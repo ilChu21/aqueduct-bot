@@ -13,6 +13,8 @@ export async function sendPigPenBalanceMsg(afp: number): Promise<void> {
 🐷 Pig Pen Balance: *${numFor.format(afp)}*
 
 \`${aqueductAddress}\`
+
+[View Wallet](https://bscscan.com/address/${aqueductAddress}) | [Join Discussions](https://t.me/ProjectAqueduct)
 `;
 
     await bot.sendPhoto(CHAT_ID, image, {
@@ -31,17 +33,20 @@ export async function sendAfpInMsg(
   txHash: string
 ): Promise<void> {
   try {
-    const msg: string = `
-Thank you, <b>${abbreviateAddress(
-      from
-    )}</b> for your <b>${amount}</b> AFP donation! 🐷💧
+    const gifUrl = 'https://tenor.com/view/maiteperroni-roma-gif-18832717';
 
-<a href="https://bscscan.com/tx/${txHash}">View Tx</a>
+    const msg: string = `
+Thank you, *${abbreviateAddress(
+      from
+    )}* for your *${amount}* AFP donation to Project Aqueduct! 🐷💧
+
+[View Tx](https://bscscan.com/tx/${txHash}) | [Join Discussions](https://t.me/ProjectAqueduct)
+
 `;
 
-    await bot.sendMessage(CHAT_ID, msg, {
-      parse_mode: 'HTML',
-      disable_web_page_preview: true,
+    await bot.sendDocument(CHAT_ID, gifUrl, {
+      caption: msg,
+      parse_mode: 'Markdown',
     });
   } catch (error) {
     console.error('❌ sendAfpInMsg() error!', error);
