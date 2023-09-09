@@ -6,7 +6,7 @@ import { numFor, abbreviateAddress } from '../utils/format';
 export async function sendPigPenBalanceMsg(afp: number): Promise<void> {
   try {
     const image =
-      'https://cdn.discordapp.com/attachments/1001892605551988886/1148965179955097660/image.png';
+      'https://cdn.discordapp.com/attachments/1001892605551988886/1150023126760046602/image.png';
 
     const msg: string = `
 
