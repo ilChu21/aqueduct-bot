@@ -1,8 +1,10 @@
-import { aqueductAddress } from '../contracts/aqueduct';
+import { oldAqueductAddress, newAqueductAddress } from '../contracts/aqueduct';
 import { pigPenBalance } from '../functions/pig-pen';
 import { sendPigPenBalanceMsg } from '../telegram/aqueduct';
 
 (async (): Promise<void> => {
-  const stakedAFP = await pigPenBalance(aqueductAddress);
-  await sendPigPenBalanceMsg(stakedAFP);
+  const oldStakedAFP: number = await pigPenBalance(oldAqueductAddress);
+  const newStakedAFP: number = await pigPenBalance(newAqueductAddress);
+  const staked: number = oldStakedAFP + newStakedAFP;
+  await sendPigPenBalanceMsg(staked);
 })();

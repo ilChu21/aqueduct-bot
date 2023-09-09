@@ -1,6 +1,6 @@
 import { CHAT_ID } from '../utils/env-vars';
 import { bot } from '../connections/telegram';
-import { aqueductAddress } from '../contracts/aqueduct';
+import { newAqueductAddress } from '../contracts/aqueduct';
 import { numFor, abbreviateAddress } from '../utils/format';
 
 export async function sendPigPenBalanceMsg(afp: number): Promise<void> {
@@ -12,9 +12,9 @@ export async function sendPigPenBalanceMsg(afp: number): Promise<void> {
 
 🐷 Pig Pen Balance: *${numFor.format(afp)}*
 
-\`${aqueductAddress}\`
+\`${newAqueductAddress}\`
 
-[View Wallet](https://bscscan.com/address/${aqueductAddress}) | [Join Discussions](https://t.me/ProjectAqueduct)
+[View Wallet](https://bscscan.com/address/${newAqueductAddress}) | [Join Discussions](https://t.me/ProjectAqueduct)
 `;
 
     await bot.sendPhoto(CHAT_ID, image, {
