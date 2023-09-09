@@ -15,7 +15,7 @@ exec('node dist/listener/afp-transfer-in.js', (error, stdout, stderr) => {
 });
 
 console.log('Cron job started...');
-cron.schedule('0 11 * * *', () => {
+cron.schedule('* * * * *', () => {
   exec('node dist/cron/pig-pen-balance.js', (error, stdout, stderr) => {
     if (error) {
       console.error('Error executing pig-pen-balance.js:', error.message);
