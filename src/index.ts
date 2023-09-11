@@ -1,29 +1,14 @@
 import 'dotenv/config';
 import cron from 'node-cron';
-import { exec } from 'child_process';
+import { callPigPenBalance } from './cron/pig-pen-balance';
+import { watchAfpAqueductTransfers } from './listener/afp-transfer-in';
 
-console.log('AFP listener started...');
-exec('node dist/listener/afp-transfer-in.js', (error, stdout, stderr) => {
-  if (error) {
-    console.error('Error executing afp-transfer-in.js:', error.message);
-    return;
-  }
-  if (stderr) {
-    console.error('Error executing afp-transfer-in.js:', stderr);
-    return;
-  }
-});
+(async function main() {
+  await watchAfpAqueductTransfers();
+  console.log('AFP listener started...');
 
-console.log('Cron job started...');
-cron.schedule('0 11 * * *', () => {
-  exec('node dist/cron/pig-pen-balance.js', (error, stdout, stderr) => {
-    if (error) {
-      console.error('Error executing pig-pen-balance.js:', error.message);
-      return;
-    }
-    if (stderr) {
-      console.error('Error executing pig-pen-balance.js:', stderr);
-      return;
-    }
+  cron.schedule('0 11 * * *', async () => {
+    await callPigPenBalance();
   });
-});
+  console.log('Cron job started...');
+})();

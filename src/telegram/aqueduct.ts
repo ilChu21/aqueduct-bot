@@ -12,7 +12,10 @@ export async function sendPigPenBalanceMsg(afp: number): Promise<void> {
 
 🐷 Pig Pen Balance: *${numFor.format(afp)}*
 
+For donations, please transfer AFP to
 \`${newAqueductAddress}\`
+
+Thank you!
 
 [View Wallet](https://bscscan.com/address/${newAqueductAddress}) | [Join Discussions](https://t.me/ProjectAqueduct)
 `;
